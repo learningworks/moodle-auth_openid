@@ -4,11 +4,11 @@
  * OpenID module/auth library functions
  *
  * @author Brent Boghosian <brent.boghosian@remote-learner.net>
- * @copyright Copyright (c) 2011 Remote-Learner
+ * @copyright Copyright (c) 2011 onwards Remote-Learner.net (http://www.remote-learner.net)
  * @author Stuart Metcalfe <info@pdl.uk.com>
  * @copyright Copyright (c) 2007 Canonical
- * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @package openid
+ * @license http://www.gnu.org/copyleft/gpl.html GNU Public License v3 or later
+ * @package auth_openid
  */
 
 define('OPENID_GREYLIST', 0);
