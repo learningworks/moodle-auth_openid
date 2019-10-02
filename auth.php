@@ -122,6 +122,12 @@ class auth_plugin_openid extends auth_plugin_base {
             $this->config->auth_openid_clear_wantsurl = '';
         }
 
+        if (!isset($this->config->auth_openid_use_default_login_form)) {
+            set_config('auth_openid_use_default_login_form', '', 'auth/openid');
+            // by default we assume that the openid.html hasn't been added to any theme
+            $this->config->auth_openid_use_default_login_form = true;
+        }
+
         // Define constants used in OpenID lib
         if (!defined('OPENID_USE_IDENTIFIER_SELECT')) { // BJB101123: fix redefined error
             define('OPENID_USE_IDENTIFIER_SELECT', 'false');
@@ -282,7 +288,8 @@ class auth_plugin_openid extends auth_plugin_base {
                 'auth_openid_confirm_switch',
                 'auth_openid_email_on_change',
                 'auth_openid_match_fields',
-                'auth_openid_clear_wantsurl'
+                'auth_openid_clear_wantsurl',
+                'auth_openid_use_default_login_form'
             );
         } elseif ($page == 'sreg') {
             $vars = array(

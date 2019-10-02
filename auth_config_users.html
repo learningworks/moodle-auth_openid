@@ -124,3 +124,11 @@
         </td>
 </tr>
 
+<tr valign="top" class="required">
+    <td colspan="2" style="padding:20px 30px;">
+        <input type="checkbox" name="auth_openid_use_default_login_form" id="auth_openid_use_default_login_form" value="true"<?php if ($this->config->auth_openid_use_default_login_form=='true') { echo ' checked="checked"'; } ?> />
+        <label for="auth_openid_use_default_login_form"><?php print_string('auth_openid_use_default_login_form','auth_openid') ?></label>
+        <br /><?php print_string('auth_openid_use_default_login_form_info', 'auth_openid'); ?>
+    </td>
+</tr>
+
