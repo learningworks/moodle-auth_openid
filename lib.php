@@ -240,7 +240,7 @@ function openid_send_confirmation_email($user) {
     $site = get_site();
     $from = get_admin();
 
-    $data = new object();
+    $data = new stdClass();
     $data->firstname = fullname($user);
     $data->sitename = format_string($site->fullname);
     $data->admin = fullname($from) .' ('. $from->email .')';
@@ -274,7 +274,7 @@ function openid_send_fallback_email($user, $openid_url) {
     $site = get_site();
     $from = get_admin();
 
-    $data = new object();
+    $data = new stdClass();
     $data->firstname = fullname($user);
     $data->sitename = format_string($site->fullname);
     $data->admin = fullname($from) .' ('. $from->email .')';
@@ -410,7 +410,7 @@ function openid_append_url($user, $openid_url) {
     }
     
     if ($user->auth == 'openid') {
-        $record = new object();
+        $record = new stdClass();
         $record->userid = $user->id;
         $record->url = $openid_url;
         

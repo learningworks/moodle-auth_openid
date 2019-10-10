@@ -302,7 +302,7 @@ class auth_plugin_openid extends auth_plugin_base {
             $add = optional_param('add_server', null, PARAM_RAW);
             
             if ($add != null) {
-                $record = new object();
+                $record = new stdClass();
                 $record->server = required_param('openid_add_server', PARAM_RAW);
                 $record->listtype = optional_param('openid_add_listtype', 0, PARAM_INT);
                 
