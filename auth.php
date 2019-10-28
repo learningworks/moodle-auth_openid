@@ -46,84 +46,84 @@ class auth_plugin_openid extends auth_plugin_base {
      */
     public function __construct() {
         $this->authtype     = 'openid';
-        $this->pluginconfig = 'auth/'.$this->authtype;
+        $this->pluginconfig = 'auth_'.$this->authtype;
         $this->roleauth     = 'auth_'.$this->authtype;
         $this->errorlogtag  = '['.strtoupper($this->roleauth).'] ';
         $this->config       = get_config($this->pluginconfig);
 
         // Set some defaults if not already set up
         if (!isset($this->config->openid_sreg_required)) {
-            set_config('openid_sreg_required', 'nickname,email,fullname,country', 'auth/openid');
+            set_config('openid_sreg_required', 'nickname,email,fullname,country', 'auth_openid');
             $this->config->openid_sreg_required='nickname,email,fullname,country';
         }
 
         if (!isset($this->config->openid_sreg_optional)) {
-            set_config('openid_sreg_optional', '', 'auth/openid');
+            set_config('openid_sreg_optional', '', 'auth_openid');
             $this->config->openid_sreg_optional='';
         }
 
         if (!isset($this->config->openid_privacy_url)) {
-            set_config('openid_privacy_url', '', 'auth/openid');
+            set_config('openid_privacy_url', '', 'auth_openid');
             $this->config->openid_privacy_url='';
         }
         
         if (!isset($this->config->openid_non_whitelisted_status)) {
-            set_config('openid_non_whitelisted_status', 0, 'auth/openid');
+            set_config('openid_non_whitelisted_status', 0, 'auth_openid');
             $this->config->openid_non_whitelisted_status=0;
         }
         
         if (!isset($this->config->auth_openid_allow_account_change)) {
-            set_config('auth_openid_allow_account_change', 'false', 'auth/openid');
+            set_config('auth_openid_allow_account_change', 'false', 'auth_openid');
             $this->config->auth_openid_allow_account_change='false'; // TBD: was true
         }
         
         if (!isset($this->config->auth_openid_allow_multiple)) {
-            set_config('auth_openid_allow_multiple', 'true', 'auth/openid');
+            set_config('auth_openid_allow_multiple', 'true', 'auth_openid');
             $this->config->auth_openid_allow_multiple='true';
         }
 
         if (!isset($this->config->auth_openid_limit_login)) {
-            set_config('auth_openid_limit_login', 'false', 'auth/openid');
+            set_config('auth_openid_limit_login', 'false', 'auth_openid');
             $this->config->auth_openid_limit_login='false';
         }
 
         if (!isset($this->config->auth_openid_custom_login)) {
-            set_config('auth_openid_custom_login', '', 'auth/openid');
+            set_config('auth_openid_custom_login', '', 'auth_openid');
             $this->config->auth_openid_custom_login='';
         }
 
         if (!isset($this->config->auth_openid_google_apps_domain)) {
-            set_config('auth_openid_google_apps_domain', '', 'auth/openid');
+            set_config('auth_openid_google_apps_domain', '', 'auth_openid');
             $this->config->auth_openid_google_apps_domain = '';
         }
 
         if (!isset($this->config->auth_openid_confirm_switch)) {
-            set_config('auth_openid_confirm_switch', 'true', 'auth/openid');
+            set_config('auth_openid_confirm_switch', 'true', 'auth_openid');
             $this->config->auth_openid_confirm_switch='true';
         }
 
         if (!isset($this->config->auth_openid_email_on_change)) {
-            set_config('auth_openid_email_on_change', 'true', 'auth/openid');
+            set_config('auth_openid_email_on_change', 'true', 'auth_openid');
             $this->config->auth_openid_email_on_change='true';
         }
 
         if (!isset($this->config->auth_openid_create_account)) {
-            set_config('auth_openid_create_account', 'true', 'auth/openid');
+            set_config('auth_openid_create_account', 'true', 'auth_openid');
             $this->config->auth_openid_create_account='true';
         }
 
         if (!isset($this->config->auth_openid_match_fields)) {
-            set_config('auth_openid_match_fields', 'email', 'auth/openid');
+            set_config('auth_openid_match_fields', 'email', 'auth_openid');
             $this->config->auth_openid_match_fields='email';
         }
 
         if (!isset($this->config->auth_openid_clear_wantsurl)) {
-            set_config('auth_openid_clear_wantsurl', '', 'auth/openid');
+            set_config('auth_openid_clear_wantsurl', '', 'auth_openid');
             $this->config->auth_openid_clear_wantsurl = '';
         }
 
         if (!isset($this->config->auth_openid_use_default_login_form)) {
-            set_config('auth_openid_use_default_login_form', '', 'auth/openid');
+            set_config('auth_openid_use_default_login_form', '', 'auth_openid');
             // by default we assume that the openid.html hasn't been added to any theme
             $this->config->auth_openid_use_default_login_form = true;
         }
@@ -345,7 +345,7 @@ class auth_plugin_openid extends auth_plugin_base {
         }
         
         foreach ($vars as $var) {
-            set_config($var, isset($config->$var) ? $config->$var : '', 'auth/openid');
+            set_config($var, isset($config->$var) ? $config->$var : '', 'auth_openid');
             $this->config->$var = isset($config->$var) ? $config->$var : '';
         }
         
@@ -829,7 +829,7 @@ class auth_plugin_openid extends auth_plugin_base {
         $current = time();
 
         // Get previous run timestamp
-        $previous = get_config('auth/openid', 'lastcleanup');
+        $previous = get_config('auth_openid', 'lastcleanup');
         $interval = $current - $previous;
         $intervaldays = floor($interval/(60*60*24));
 
@@ -839,7 +839,7 @@ class auth_plugin_openid extends auth_plugin_base {
             // Create the consumer instance
             $store = new Auth_OpenID_FileStore($CFG->dataroot.'/openid');
             $store->cleanupNonces();
-            set_config('lastcleanup', $current, 'auth/openid');
+            set_config('lastcleanup', $current, 'auth_openid');
             $this->config->lastcleanup = $current;
         }
     }

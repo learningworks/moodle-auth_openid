@@ -112,7 +112,7 @@ function openid_server_is_greylisted($server) {
  */
 function openid_server_allowed($server, $config = null) {
     if ($config == null) {
-        $config = get_config('auth/openid');
+        $config = get_config('auth_openid');
     }
     switch ($config->openid_non_whitelisted_status) {
         case OPENID_NONWHITELISTED_ALLOW:
@@ -136,7 +136,7 @@ function openid_server_allowed($server, $config = null) {
 function openid_server_requires_confirm($server, $config = null)
 {
     if ($config == null) {
-        $config = get_config('auth/openid');
+        $config = get_config('auth_openid');
     }
     switch ($config->openid_non_whitelisted_status) {
         case OPENID_NONWHITELISTED_ALLOW:
@@ -322,7 +322,7 @@ function openid_change_user_account(&$user, $openid_url, $logout = false) {
         logout_tmpuser_error('auth_openid_cannot_change_user', null, $logout);
     }
     
-    $config = get_config('auth/openid');
+    $config = get_config('auth_openid');
     $allow_change = ($config->auth_openid_allow_account_change=='true');
     $user = get_complete_user_data('id', $user->id);
     
@@ -388,7 +388,7 @@ function openid_change_user_account(&$user, $openid_url, $logout = false) {
  */
 function openid_append_url($user, $openid_url) {
     global $DB;
-    $config = get_config('auth/openid');
+    $config = get_config('auth_openid');
     $allow_append = ($config->auth_openid_allow_multiple=='true');
     $user = get_complete_user_data('id', $user->id);
 

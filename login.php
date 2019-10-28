@@ -19,7 +19,7 @@ require_once("{$CFG->dirroot}/auth/openid/locallib.php");
 
 global $OUTPUT, $PAGE, $frm, $user; // see: auth.php::loginpage_hook():line 291
 
-$config = get_config('auth/openid');
+$config = get_config('auth_openid');
 
 $login_opts = optional_param('login','', PARAM_ALPHANUMEXT);
 $openid_login = optional_param('openid','', PARAM_ALPHANUMEXT);

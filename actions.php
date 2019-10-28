@@ -43,7 +43,7 @@ $cancel = optional_param('cancel_action', false, PARAM_BOOL);
 $reqinfo = optional_param('req_info', false, PARAM_BOOL);
 
 $authplugin = get_auth_plugin('openid');
-$config = get_config('auth/openid');
+$config = get_config('auth_openid');
 if (is_enabled_auth('openid_sso')) {
     if ($url === $config->openid_sso_url) {
         $authplugin = get_auth_plugin('openid_sso');

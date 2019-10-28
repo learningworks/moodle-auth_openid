@@ -150,7 +150,7 @@ class auth_openid_cron_testcase extends advanced_testcase {
         $this->resetAfterTest(true);
 
         // Initialize the timestamp
-        set_config('lastcleanup', $timestamp, 'auth/openid');
+        set_config('lastcleanup', $timestamp, 'auth_openid');
         $yesterday = strtotime('-1 day -5 minutes', $now);
         $lastweek = strtotime('-1 week', $now);
         // Convert timestamps to base 16

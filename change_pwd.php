@@ -30,7 +30,7 @@ if (!is_enabled_auth('openid')) {
 if (!$site = get_site()) {
     print_error('auth_openid_no_site', 'auth_openid');
 }
-$config = get_config('auth/openid');
+$config = get_config('auth_openid');
 include 'user_profile.html';
 echo $OUTPUT->footer();
 

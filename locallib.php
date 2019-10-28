@@ -223,7 +223,7 @@ function openid_resp_to_user( &$resp )
     }
   */
 
-    $config = get_config('auth/openid');
+    $config = get_config('auth_openid');
     //error_log("/auth/openid/locallib.php::auth/openid::config=...");
     //err_dump($config);
 
