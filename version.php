@@ -10,9 +10,9 @@
  * @package openid
  */
 
-$plugin->version  = 2019102503;  // The current module version (Date: YYYYMMDDXX)
+$plugin->version  = 2019102504;  // The current module version (Date: YYYYMMDDXX)
 $plugin->requires = 2015101600;  // Requires this Moodle version
-$plugin->release = '3.3.0.1';    // ELIS Component Version
+$plugin->release = '3.3.0.2';    // ELIS Component Version
 $plugin->component = 'auth_openid';
 $plugin->dependencies = [
     'tool_openid' => ANY_VERSION

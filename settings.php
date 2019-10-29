@@ -44,21 +44,21 @@ if ($hassiteconfig) {
 
     // Allow account change.
     $settingname    = "{$componentname}/{$componentname}_allow_account_change";
-    $visiblename    = 'Allow account change';
+    $visiblename    = get_string('allowaccountchange', $componentname);
     $description    = get_string('auth_openid_allow_account_change_key', $componentname);
     $default        = '';
     $openidsettings[] = new admin_setting_configcheckbox($settingname, $visiblename, $description, $default);
 
     // Allow multiple identities.
     $settingname    = "{$componentname}/{$componentname}_allow_multiple";
-    $visiblename    = 'Allow multiple identities';
+    $visiblename    = get_string('allowmultiple', $componentname);
     $description    = get_string('auth_openid_allow_multiple_key', $componentname);
     $default        = '';
     $openidsettings[] = new admin_setting_configcheckbox($settingname, $visiblename, $description, $default);
 
     // Limit to OpenID auth only.
     $settingname    = "{$componentname}/{$componentname}_limit_login";
-    $visiblename    = 'OpenID login only';
+    $visiblename    = get_string('openidloginonly', $componentname);
     $a              = new stdClass;
     $a->url         = $CFG->wwwroot .'/auth/openid/login.php?login=all';
     if (!empty(get_config($componentname, 'auth_openid_custom_login')) || file_exists(openid_login_file())) {
@@ -92,35 +92,28 @@ if ($hassiteconfig) {
 
     // Require confirmation when switching auth.
     $settingname    = "{$componentname}/{$componentname}_confirm_switch";
-    $visiblename    = 'Confirm when switching authentication';
+    $visiblename    = get_string('confirmswitchauth', $componentname);
     $description    = get_string('auth_openid_confirm_switch', $componentname);
     $default        = '';
     $openidsettings[] = new admin_setting_configcheckbox($settingname, $visiblename, $description, $default);
 
     // Send email when switching to OpenID.
     $settingname    = "{$componentname}/{$componentname}_email_on_change";
-    $visiblename    = 'Send email when switching';
+    $visiblename    = get_string('sendemailswitch', $componentname);
     $description    = get_string('auth_openid_email_on_change', $componentname);
     $default        = '';
     $openidsettings[] = new admin_setting_configcheckbox($settingname, $visiblename, $description, $default);
 
     // Allow new moodle account creation.
     $settingname    = "{$componentname}/{$componentname}_create_account";
-    $visiblename    = 'Allow new account creation';
+    $visiblename    = get_string('allownewaccount', $componentname);
     $description    = get_string('auth_openid_create_account', $componentname);
     $default        = '';
     $openidsettings[] = new admin_setting_configcheckbox($settingname, $visiblename, $description, $default);
 
     // Match fields.
     $settingname    = "{$componentname}/{$componentname}_match_fields";
-    $visiblename    = 'Match OpenID attributes';
-    $description    = get_string('auth_openid_match_fields_config', $componentname);
-    $default        = '';
-    $openidsettings[] = new admin_setting_configtext($settingname, $visiblename, $description, $default);
-
-    // Match fields.
-    $settingname    = "{$componentname}/{$componentname}_match_fields";
-    $visiblename    = 'Match OpenID attributes';
+    $visiblename    = get_string('matchopenidfields', $componentname);
     $description    = get_string('auth_openid_match_fields_config', $componentname);
     $default        = '';
     $openidsettings[] = new admin_setting_configtext($settingname, $visiblename, $description, $default);
@@ -138,7 +131,7 @@ if ($hassiteconfig) {
 
     // Force OpenID users to main page on login.
     $settingname    = "{$componentname}/{$componentname}_clear_wantsurl";
-    $visiblename    = 'Force main site page';
+    $visiblename    = get_string('forcemainsitepage', $componentname);
     $description    = get_string('auth_openid_clear_wantsurl_key', $componentname);
     $default        = '';
     $openidsettings[] = new admin_setting_configcheckbox($settingname, $visiblename, $description, $default);
@@ -154,7 +147,8 @@ if ($hassiteconfig) {
     $settingname = "$componentname/headingserversettings";
     $visiblename = get_string('auth_openid_servers_settings', $componentname);
     $toolurl     = new moodle_url('/admin/tool/openid/servers.php');
-    $description = get_string('auth_openid_servers_description', $componentname). ' '.html_writer::link($toolurl, 'Click here.');
+    $link        = html_writer::link($toolurl, get_string('clickhere', $componentname));
+    $description = get_string('auth_openid_servers_description', $componentname). ' '.$link;
     $openidsettings[] = new admin_setting_heading($settingname, $visiblename, $description);
 
     // Add the settings to the settings page.

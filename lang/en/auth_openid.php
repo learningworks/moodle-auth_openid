@@ -124,6 +124,14 @@ $string['openid_tab_sreg'] = 'Simple Registration Extension';
 $string['openid_tab_servers'] = 'Servers';
 
 // Config strings
+$string['allowaccountchange'] = 'Allow account change';
+$string['allowmultiple'] = 'Allow multiple identities';
+$string['openidloginonly'] = 'Open ID login only';
+$string['confirmswitchauth'] = 'Confirm when switching authentication';
+$string['sendemailswitch'] = 'Send email when switching';
+$string['allownewaccount'] = 'Allow new account creation';
+$string['forcemainsitepage'] = 'Force main site page';
+$string['matchopenidfields'] = 'Match OpenID attributes';
 $string['allow'] = 'Allowed';
 $string['confirm'] = 'Confirmed';
 $string['deny'] = 'Denied';
