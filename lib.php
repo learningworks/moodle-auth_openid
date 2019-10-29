@@ -323,7 +323,7 @@ function openid_change_user_account(&$user, $openid_url, $logout = false) {
     }
     
     $config = get_config('auth_openid');
-    $allow_change = ($config->auth_openid_allow_account_change=='true');
+    $allow_change = ($config->auth_openid_allow_account_change == 1);
     $user = get_complete_user_data('id', $user->id);
     
     if (empty($user)) {
@@ -355,7 +355,7 @@ function openid_change_user_account(&$user, $openid_url, $logout = false) {
         if ($DB->update_record('user', $user) !== false) {
             openid_append_url($user, $openid_url);
             $USER = get_complete_user_data('id', $user->id);
-            if ($config->auth_openid_email_on_change == 'true') {
+            if ($config->auth_openid_email_on_change == 1) {
                 // send user email with OpenID URL
                 $adminuser            = get_admin();
                 $strdata              = new stdClass;
@@ -389,7 +389,7 @@ function openid_change_user_account(&$user, $openid_url, $logout = false) {
 function openid_append_url($user, $openid_url) {
     global $DB;
     $config = get_config('auth_openid');
-    $allow_append = ($config->auth_openid_allow_multiple=='true');
+    $allow_append = ($config->auth_openid_allow_multiple == 1);
     $user = get_complete_user_data('id', $user->id);
 
     if (empty($user)) {

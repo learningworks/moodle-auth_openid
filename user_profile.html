@@ -5,7 +5,7 @@
     <?php
     
     $config = get_config('auth_openid');
-    $allow_append = ($config->auth_openid_allow_multiple=='true');
+    $allow_append = ($config->auth_openid_allow_multiple == 1);
     
     if ($allow_append) { ?>
     <tr>

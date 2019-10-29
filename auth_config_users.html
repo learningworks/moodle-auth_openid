@@ -12,21 +12,21 @@
 
 <tr valign="top" class="required">
 	<td colspan="2" style="padding:20px 30px;">
-		<input type="checkbox" name="auth_openid_allow_account_change" id="auth_openid_allow_account_change" value="true"<?php if ($this->config->auth_openid_allow_account_change=='true') { echo ' checked="checked"'; } ?> />
+		<input type="checkbox" name="auth_openid_allow_account_change" id="auth_openid_allow_account_change" value="true"<?php if ($this->config->auth_openid_allow_account_change == 1) { echo ' checked="checked"'; } ?> />
 		<label for="auth_openid_allow_account_change"><?php print_string('auth_openid_allow_account_change_key','auth_openid') ?></label>
 	</td>
 </tr>
 
 <tr valign="top" class="required">
 	<td colspan="2" style="padding:20px 30px;">
-		<input type="checkbox" name="auth_openid_allow_multiple" id="auth_openid_allow_multiple" value="true"<?php if ($this->config->auth_openid_allow_multiple=='true') { echo ' checked="checked"'; } ?> />
+		<input type="checkbox" name="auth_openid_allow_multiple" id="auth_openid_allow_multiple" value="true"<?php if ($this->config->auth_openid_allow_multiple == 1) { echo ' checked="checked"'; } ?> />
 		<label for="auth_openid_allow_multiple"><?php print_string('auth_openid_allow_multiple_key','auth_openid') ?></label>
 	</td>
 </tr>
 
 <tr valign="top" class="required">
 	<td colspan="2" style="padding:20px 30px;">
-		<input type="checkbox" name="auth_openid_limit_login" id="auth_openid_limit_login" value="true"<?php if ($this->config->auth_openid_limit_login=='true') { echo ' checked="checked"'; } ?> />
+		<input type="checkbox" name="auth_openid_limit_login" id="auth_openid_limit_login" value="true"<?php if ($this->config->auth_openid_limit_login == 1) { echo ' checked="checked"'; } ?> />
 		<label for="auth_openid_limit_login"><?php 
          $sparam = new stdClass;
          $sparam->url = $CFG->wwwroot .'/auth/openid/login.php?login=all';
@@ -74,21 +74,21 @@
 
 <tr valign="top" class="required">
 	<td colspan="2" style="padding:20px 30px;">
-		<input type="checkbox" name="auth_openid_confirm_switch" id="auth_openid_confirm_switch" value="true"<?php if ($this->config->auth_openid_confirm_switch=='true') { echo ' checked="checked"'; } ?> />
+		<input type="checkbox" name="auth_openid_confirm_switch" id="auth_openid_confirm_switch" value="true"<?php if ($this->config->auth_openid_confirm_switch == 1) { echo ' checked="checked"'; } ?> />
 		<label for="auth_openid_confirm_switch"><?php print_string('auth_openid_confirm_switch','auth_openid'); ?></label>
 	</td>
 </tr>
 
 <tr valign="top" class="required">
 	<td colspan="2" style="padding:20px 30px;">
-		<input type="checkbox" name="auth_openid_email_on_change" id="auth_openid_email_on_change" value="true"<?php if ($this->config->auth_openid_email_on_change=='true') { echo ' checked="checked"'; } ?> />
+		<input type="checkbox" name="auth_openid_email_on_change" id="auth_openid_email_on_change" value="true"<?php if ($this->config->auth_openid_email_on_change == 1) { echo ' checked="checked"'; } ?> />
 		<label for="auth_openid_email_on_change"><?php print_string('auth_openid_email_on_change','auth_openid'); ?></label>
 	</td>
 </tr>
 
 <tr valign="top" class="required">
 	<td colspan="2" style="padding:20px 30px;">
-		<input type="checkbox" name="auth_openid_create_account" id="auth_openid_create_account" value="true"<?php if ($this->config->auth_openid_create_account=='true') { echo ' checked="checked"'; } ?> />
+		<input type="checkbox" name="auth_openid_create_account" id="auth_openid_create_account" value="true"<?php if ($this->config->auth_openid_create_account == 1) { echo ' checked="checked"'; } ?> />
 		<label for="auth_openid_create_account"><?php print_string('auth_openid_create_account','auth_openid') ?></label>
 	</td>
 </tr>
@@ -119,14 +119,14 @@
 
 <tr valign="top" class="required">
         <td colspan="2" style="padding:20px 30px;">
-                <input type="checkbox" name="auth_openid_clear_wantsurl" id="auth_openid_clear_wantsurl" value="true"<?php if ($this->config->auth_openid_clear_wantsurl=='true') { echo ' checked="checked"'; } ?> />
+                <input type="checkbox" name="auth_openid_clear_wantsurl" id="auth_openid_clear_wantsurl" value="true"<?php if ($this->config->auth_openid_clear_wantsurl == 1) { echo ' checked="checked"'; } ?> />
                 <label for="auth_openid_clear_wantsurl"><?php print_string('auth_openid_clear_wantsurl_key','auth_openid') ?></label>
         </td>
 </tr>
 
 <tr valign="top" class="required">
     <td colspan="2" style="padding:20px 30px;">
-        <input type="checkbox" name="auth_openid_use_default_login_form" id="auth_openid_use_default_login_form" value="true"<?php if ($this->config->auth_openid_use_default_login_form=='true') { echo ' checked="checked"'; } ?> />
+        <input type="checkbox" name="auth_openid_use_default_login_form" id="auth_openid_use_default_login_form" value="true"<?php if ($this->config->auth_openid_use_default_login_form == 1) { echo ' checked="checked"'; } ?> />
         <label for="auth_openid_use_default_login_form"><?php print_string('auth_openid_use_default_login_form','auth_openid') ?></label>
         <br /><?php print_string('auth_openid_use_default_login_form_info', 'auth_openid'); ?>
     </td>

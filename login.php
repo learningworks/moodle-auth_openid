@@ -78,8 +78,8 @@ $login_all = empty($config->auth_openid_limit_login) || !empty($login_opts);
      * Following code block moved from: login_form.html
      * to allow SSO redirect before any OUTPUT occurs
      */
-    $allow_change = ($config->auth_openid_allow_account_change=='true') && !isguestuser();
-    $allow_append = ($config->auth_openid_allow_multiple=='true');
+    $allow_change = ($config->auth_openid_allow_account_change == 1) && !isguestuser();
+    $allow_append = ($config->auth_openid_allow_multiple == 1);
     $user_is_openid = (!empty($USER) && property_exists($USER,'auth') && $USER->auth == 'openid');
     $user_loggedin = !user_not_loggedin();
 

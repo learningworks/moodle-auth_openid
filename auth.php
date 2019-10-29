@@ -54,42 +54,42 @@ class auth_plugin_openid extends auth_plugin_base {
         // Set some defaults if not already set up
         if (!isset($this->config->openid_sreg_required)) {
             set_config('openid_sreg_required', 'nickname,email,fullname,country', 'auth_openid');
-            $this->config->openid_sreg_required='nickname,email,fullname,country';
+            $this->config->openid_sreg_required = 'nickname,email,fullname,country';
         }
 
         if (!isset($this->config->openid_sreg_optional)) {
             set_config('openid_sreg_optional', '', 'auth_openid');
-            $this->config->openid_sreg_optional='';
+            $this->config->openid_sreg_optional = '';
         }
 
         if (!isset($this->config->openid_privacy_url)) {
             set_config('openid_privacy_url', '', 'auth_openid');
-            $this->config->openid_privacy_url='';
+            $this->config->openid_privacy_url = '';
         }
         
         if (!isset($this->config->openid_non_whitelisted_status)) {
-            set_config('openid_non_whitelisted_status', 0, 'auth_openid');
-            $this->config->openid_non_whitelisted_status=0;
+            set_config('openid_non_whitelisted_status', OPENID_NONWHITELISTED_CONFIRM, 'auth_openid');
+            $this->config->openid_non_whitelisted_status = OPENID_NONWHITELISTED_CONFIRM;
         }
         
         if (!isset($this->config->auth_openid_allow_account_change)) {
-            set_config('auth_openid_allow_account_change', 'false', 'auth_openid');
-            $this->config->auth_openid_allow_account_change='false'; // TBD: was true
+            set_config('auth_openid_allow_account_change', 0, 'auth_openid');
+            $this->config->auth_openid_allow_account_change = 0; // TBD: was true
         }
         
         if (!isset($this->config->auth_openid_allow_multiple)) {
-            set_config('auth_openid_allow_multiple', 'true', 'auth_openid');
-            $this->config->auth_openid_allow_multiple='true';
+            set_config('auth_openid_allow_multiple', 1, 'auth_openid');
+            $this->config->auth_openid_allow_multiple = 1;
         }
 
         if (!isset($this->config->auth_openid_limit_login)) {
-            set_config('auth_openid_limit_login', 'false', 'auth_openid');
-            $this->config->auth_openid_limit_login='false';
+            set_config('auth_openid_limit_login', 0, 'auth_openid');
+            $this->config->auth_openid_limit_login = 0;
         }
 
         if (!isset($this->config->auth_openid_custom_login)) {
             set_config('auth_openid_custom_login', '', 'auth_openid');
-            $this->config->auth_openid_custom_login='';
+            $this->config->auth_openid_custom_login = '';
         }
 
         if (!isset($this->config->auth_openid_google_apps_domain)) {
@@ -98,34 +98,34 @@ class auth_plugin_openid extends auth_plugin_base {
         }
 
         if (!isset($this->config->auth_openid_confirm_switch)) {
-            set_config('auth_openid_confirm_switch', 'true', 'auth_openid');
-            $this->config->auth_openid_confirm_switch='true';
+            set_config('auth_openid_confirm_switch', 1, 'auth_openid');
+            $this->config->auth_openid_confirm_switch = 1;
         }
 
         if (!isset($this->config->auth_openid_email_on_change)) {
-            set_config('auth_openid_email_on_change', 'true', 'auth_openid');
-            $this->config->auth_openid_email_on_change='true';
+            set_config('auth_openid_email_on_change', 1, 'auth_openid');
+            $this->config->auth_openid_email_on_change = 1;
         }
 
         if (!isset($this->config->auth_openid_create_account)) {
-            set_config('auth_openid_create_account', 'true', 'auth_openid');
-            $this->config->auth_openid_create_account='true';
+            set_config('auth_openid_create_account', 1, 'auth_openid');
+            $this->config->auth_openid_create_account = 1;
         }
 
         if (!isset($this->config->auth_openid_match_fields)) {
             set_config('auth_openid_match_fields', 'email', 'auth_openid');
-            $this->config->auth_openid_match_fields='email';
+            $this->config->auth_openid_match_fields = 'email';
         }
 
         if (!isset($this->config->auth_openid_clear_wantsurl)) {
-            set_config('auth_openid_clear_wantsurl', '', 'auth_openid');
-            $this->config->auth_openid_clear_wantsurl = '';
+            set_config('auth_openid_clear_wantsurl', 0, 'auth_openid');
+            $this->config->auth_openid_clear_wantsurl = 0;
         }
 
         if (!isset($this->config->auth_openid_use_default_login_form)) {
-            set_config('auth_openid_use_default_login_form', '', 'auth_openid');
+            set_config('auth_openid_use_default_login_form', 1, 'auth_openid');
             // by default we assume that the openid.html hasn't been added to any theme
-            $this->config->auth_openid_use_default_login_form = true;
+            $this->config->auth_openid_use_default_login_form = 1;
         }
 
         // Define constants used in OpenID lib
@@ -154,7 +154,7 @@ class auth_plugin_openid extends auth_plugin_base {
         global $DB, $USER;
         return(is_enabled_auth('openid') && !empty($USER) && $USER->id > 0 &&
                property_exists($USER, 'auth') && $USER->auth == 'openid' &&
-               ($this->config->auth_openid_allow_multiple == 'true' ||
+               ($this->config->auth_openid_allow_multiple == 1 ||
                 $DB->count_records('openid_urls', array('userid' => $USER->id))
                 > 1)
         );
@@ -391,7 +391,7 @@ class auth_plugin_openid extends auth_plugin_base {
                                   $this->config->auth_openid_google_apps_domain,
                                   PARAM_RAW);
         $mode = optional_param('openid_mode', null, PARAM_ALPHANUMEXT);
-        $allow_append = ($this->config->auth_openid_allow_multiple=='true');
+        $allow_append = ($this->config->auth_openid_allow_multiple == 1);
         $referer = get_local_referer(false);
         // Check for OpenID login override 'admin=true'
         if ($admin === null && strstr($referer,'admin=true')) {
@@ -453,7 +453,7 @@ class auth_plugin_openid extends auth_plugin_base {
                     // Otherwise, create a new account
                     $user = $this->_open_account($resp,
                                  !isset($this->config->auth_openid_create_account)
-                                 || $this->config->auth_openid_create_account == 'true');
+                                 || $this->config->auth_openid_create_account == 1);
                 }
                 if (!empty($user)) {
                     $frm = new stdClass();
