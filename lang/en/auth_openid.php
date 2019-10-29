@@ -161,3 +161,5 @@ $string['auth_openid_use_default_login_form_info'] = "<small><strong>Note:</stro
 $string['openid_non_whitelisted_status'] = 'Non-whitelisted servers shall be: ';
 $string['openid_non_whitelisted_info'] = '<small><strong>Note:</strong> <em>Confirmed</em> registration is only used where an application would otherwise be completed automatically without human intervention (eg: where OpenID Registration Data covers the minimum registration requirements).</small>';
 $string['openid_require_greylist_confirm_key'] = 'Require users of non-whitelisted servers to confirm their registration? <small>This is only used where an application would otherwise be completed automatically without human intervention (eg: where Simple Registration Data covers the minimum registration requirements)</small>';
+
+$string['clickhere'] = 'Click here.';

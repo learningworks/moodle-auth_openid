@@ -25,3 +25,4 @@
 
 $string['action_cancelled'] = 'Action canceled.  No changes have been made to your account.';
 $string['auth_openid_user_cancelled'] = 'Authentication canceled by user';
+$string['clickhere'] = 'Click here.';
