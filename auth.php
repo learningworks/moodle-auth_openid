@@ -831,7 +831,11 @@ class auth_plugin_openid extends auth_plugin_base {
         // Get previous run timestamp
         $previous = get_config('auth_openid', 'lastcleanup');
         $interval = $current - $previous;
-        $intervaldays = floor($interval/(60*60*24));
+        $frequency = get_config('auth_openid', 'auth_openid_association_cleanup_frequency');
+        if (!$frequency) {
+            $frequency = 12;
+        }
+        $intervaldays = floor($interval/(60*60*$frequency));
 
         // Nonce cleanup should be run once per day
         // No assocations are created, and thus do not need to be cleaned up
@@ -839,6 +843,37 @@ class auth_plugin_openid extends auth_plugin_base {
             // Create the consumer instance
             $store = new Auth_OpenID_FileStore($CFG->dataroot.'/openid');
             $store->cleanupNonces();
+
+            $allassociations = [];
+
+            $associationfilenames = Auth_OpenID_FileStore::_listdir($store->association_dir);
+
+            foreach ($associationfilenames as $associationfilename) {
+                $associationfile = fopen($associationfilename, 'rb');
+                if ($associationfile !== false) {
+                    $assoc_s = fread($associationfile,
+                    filesize($associationfilename));
+                    fclose($associationfile);
+
+                    // Remove expired or corrupted associations
+                    $association = Auth_OpenID_Association::deserialize('Auth_OpenID_Association', $assoc_s);
+
+                    if ($association === null) {
+                        Auth_OpenID_FileStore::_removeIfPresent(
+                        $associationfilename);
+                    } else {
+                        $allassociations[] = [$associationfilename, $association];
+                    }
+                }
+            }
+
+            $removed = 0;
+            foreach ($allassociations as $pair) {
+                list($assoc_filename, $assoc) = $pair;
+                Auth_OpenID_FileStore::_removeIfPresent($assoc_filename);
+                $removed += 1;
+            }
+
             set_config('lastcleanup', $current, 'auth_openid');
             $this->config->lastcleanup = $current;
         }

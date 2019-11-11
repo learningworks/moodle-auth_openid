@@ -143,6 +143,13 @@ if ($hassiteconfig) {
     $default        = '';
     $openidsettings[] = new admin_setting_configcheckbox($settingname, $visiblename, $description, $default);
 
+    // Associations cleanup frequency.
+    $settingname    = "{$componentname}/{$componentname}_association_cleanup_frequency";
+    $visiblename    = get_string('auth_openid_association_cleanup_frequency', $componentname);
+    $description    = get_string('auth_openid_association_cleanup_frequency_info', $componentname);
+    $default        = 12;
+    $openidsettings[] = new admin_setting_configtext($settingname, $visiblename, $description, $default, PARAM_INT);
+
     // Servers heading.
     $settingname = "$componentname/headingserversettings";
     $visiblename = get_string('auth_openid_servers_settings', $componentname);

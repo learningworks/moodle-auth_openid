@@ -165,6 +165,8 @@ $string['auth_openid_servers_settings'] = 'OpenID Server settings';
 $string['auth_openid_servers_description'] = 'Manage your list of OpenID servers which are automatically allowed or blocked. You can use wilcards such as *.myopenid.com.<br />';
 $string['auth_openid_use_default_login_form'] = 'Use the main site login form for returning users?';
 $string['auth_openid_use_default_login_form_info'] = "<small><strong>Note:</strong> You may want to customise your login screen for returning users. If you want to do this then you will need to copy the <strong><em>openid.html</em></strong> file from the directory <strong><em>{$CFG->dirroot}/auth/openid/custom</strong></em> to the parent directory of your theme and make the required changes.</small>";
+$string['auth_openid_association_cleanup_frequency'] = 'Assocation cleanup';
+$string['auth_openid_association_cleanup_frequency_info'] = 'The frequency (in hours) that the associations directory will be cleaned up.';
 
 $string['openid_non_whitelisted_status'] = 'Non-whitelisted servers shall be: ';
 $string['openid_non_whitelisted_info'] = '<small><strong>Note:</strong> <em>Confirmed</em> registration is only used where an application would otherwise be completed automatically without human intervention (eg: where OpenID Registration Data covers the minimum registration requirements).</small>';

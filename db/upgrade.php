@@ -31,5 +31,9 @@ function xmldb_auth_openid_upgrade($oldversion) {
         upgrade_fix_config_auth_plugin_names('openid');
         upgrade_plugin_savepoint(true, 2019102500, 'auth', 'openid');
     }
+    if ($oldversion < 2019102505) {
+        set_config('auth_openid_association_cleanup_frequency', 12);
+        upgrade_plugin_savepoint(true, 2019102505, 'auth', 'openid');
+    }
     return true;
 }
