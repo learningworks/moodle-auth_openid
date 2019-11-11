@@ -148,7 +148,7 @@ if ($hassiteconfig) {
     $visiblename    = get_string('auth_openid_association_cleanup_frequency', $componentname);
     $description    = get_string('auth_openid_association_cleanup_frequency_info', $componentname);
     $default        = 12;
-    $openidsettings[] = new admin_setting_configtext($settingname, $visiblename, $description, $default, PARAM_INT);
+    $openidsettings[] = new admin_setting_configtext($settingname, $visiblename, $description, $default, PARAM_FLOAT);
 
     // Servers heading.
     $settingname = "$componentname/headingserversettings";
